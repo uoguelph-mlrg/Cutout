@@ -1,6 +1,7 @@
 # Cutout
 Code to replicate experiments from https://arxiv.org/abs/1708.04552
-
+## Results and Usage   
+### ResNet18  
 Test error (%, flip/translation augmentation, mean/std normalization, mean of 5 runs) 
 
 | **Network** | **CIFAR-10** | **CIFAR-100** |
@@ -14,6 +15,7 @@ To train ResNet18 on CIFAR10 with data augmentation and cutout:
 To train ResNet18 on CIFAR100 with data augmentation and cutout:  
 `python train.py --dataset cifar100 --model resnet18 --data_augmentation --cutout --length 8`
 
+### WideResNet
 Test error (%, flip/translation augmentation, mean/std normalization, mean of 5 runs)  
 
 | **Network** | **CIFAR-10** | **CIFAR-100** | **SVHN** |
@@ -30,6 +32,7 @@ To train WideResNet 28-10 on CIFAR100 with data augmentation and cutout:
 To train WideResNet 16-8 on SVHN with cutout:  
 `python train.py --dataset svhn --model wideresnet --learning_rate 0.01 --epochs 160 --cutout --length 20`
 
+### Shake-shake Regularization Network
 Test error (%, flip/translation augmentation, mean/std normalization, mean of 3 runs)  
 
 | **Network** | **CIFAR-10** | **CIFAR-100** |
