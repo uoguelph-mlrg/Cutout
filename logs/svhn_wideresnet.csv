@@ -1,0 +1,14 @@
+no_cuda,False
+data_augmentation,False
+learning_rate,0.01
+n_holes,1
+batch_size,128
+dataset,svhn
+epochs,160
+length,20
+seed,0
+cuda,True
+model,wideresnet
+cutout,True
+""
+epoch,train_acc,test_acc
