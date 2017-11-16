@@ -5,15 +5,17 @@ This repository contains the code for the paper [Improved Regularization of Conv
 ## Introduction
 
 Cutout is a simple regularization method for convolutional neural networks which consists of masking out random sections of input images during training. This technique simulates occluded examples and encourages the model to take more minor features into consideration, rather than relying on the presence of a few major features, when making decision.
-![Cutout applied to CIFAR-10](https://github.com/uoguelph-mlrg/Cutout/images/cutout_on_cifar10.jpg "Cutout applied to CIFAR-10")
+![Cutout applied to CIFAR-10](https://github.com/uoguelph-mlrg/Cutout/blob/master/images/cutout_on_cifar10.jpg "Cutout applied to CIFAR-10")
 
 Bibtex:  
-@article{devries2017improved,
-  title={Improved regularization of convolutional neural networks with cutout},
-  author={DeVries, Terrance and Taylor, Graham W},
-  journal={arXiv preprint arXiv:1708.04552},
-  year={2017}
+```
+@article{devries2017cutout,  
+  title={Improved Regularization of Convolutional Neural Networks with Cutout},  
+  author={DeVries, Terrance and Taylor, Graham W},  
+  journal={arXiv preprint arXiv:1708.04552},  
+  year={2017}  
 }
+```
 
 ## Results and Usage   
 ### ResNet18  
@@ -31,6 +33,8 @@ To train ResNet18 on CIFAR100 with data augmentation and cutout:
 `python train.py --dataset cifar100 --model resnet18 --data_augmentation --cutout --length 8`
 
 ### WideResNet
+WideResNet model implementation from https://github.com/xternalz/WideResNet-pytorch  
+
 Test error (%, flip/translation augmentation, mean/std normalization, mean of 5 runs)  
 
 | **Network** | **CIFAR-10** | **CIFAR-100** | **SVHN** |
@@ -48,6 +52,8 @@ To train WideResNet 16-8 on SVHN with cutout:
 `python train.py --dataset svhn --model wideresnet --learning_rate 0.01 --epochs 160 --cutout --length 20`
 
 ### Shake-shake Regularization Network
+Shake-shake regularization model implementation from https://github.com/xgastaldi/shake-shake
+
 Test error (%, flip/translation augmentation, mean/std normalization, mean of 3 runs)  
 
 | **Network** | **CIFAR-10** | **CIFAR-100** |
