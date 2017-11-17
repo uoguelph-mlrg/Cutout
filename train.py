@@ -85,34 +85,34 @@ test_transform = transforms.Compose([
 
 if args.dataset == 'cifar10':
     num_classes = 10
-    train_dataset = datasets.CIFAR10(root='../../data/',
+    train_dataset = datasets.CIFAR10(root='/data/',
                                      train=True,
                                      transform=train_transform,
                                      download=True)
 
-    test_dataset = datasets.CIFAR10(root='../../data/',
+    test_dataset = datasets.CIFAR10(root='/data/',
                                     train=False,
                                     transform=test_transform,
                                     download=True)
 elif args.dataset == 'cifar100':
     num_classes = 100
-    train_dataset = datasets.CIFAR100(root='../../data/',
+    train_dataset = datasets.CIFAR100(root='/data/',
                                       train=True,
                                       transform=train_transform,
                                       download=True)
 
-    test_dataset = datasets.CIFAR100(root='../../data/',
+    test_dataset = datasets.CIFAR100(root='/data/',
                                      train=False,
                                      transform=test_transform,
                                      download=True)
 elif args.dataset == 'svhn':
     num_classes = 10
-    train_dataset = datasets.SVHN(root='../../data/',
+    train_dataset = datasets.SVHN(root='/data/',
                                   split='train',
                                   transform=train_transform,
                                   download=True)
 
-    extra_dataset = datasets.SVHN(root='../../data/',
+    extra_dataset = datasets.SVHN(root='/data/',
                                   split='extra',
                                   transform=train_transform,
                                   download=True)
@@ -123,7 +123,7 @@ elif args.dataset == 'svhn':
     train_dataset.data = data
     train_dataset.labels = labels
 
-    test_dataset = datasets.SVHN(root='../../data/',
+    test_dataset = datasets.SVHN(root='/data/',
                                  split='test',
                                  transform=test_transform,
                                  download=True)
