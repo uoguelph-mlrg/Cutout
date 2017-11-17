@@ -4,7 +4,7 @@ This repository contains the code for the paper [Improved Regularization of Conv
 
 ## Introduction
 
-Cutout is a simple regularization method for convolutional neural networks which consists of masking out random sections of input images during training. This technique simulates occluded examples and encourages the model to take more minor features into consideration, rather than relying on the presence of a few major features, when making decision.
+Cutout is a simple regularization method for convolutional neural networks which consists of masking out random sections of input images during training. This technique simulates occluded examples and encourages the model to take more minor features into consideration when making decisions, rather than relying on the presence of a few major features.  
 ![Cutout applied to CIFAR-10](https://github.com/uoguelph-mlrg/Cutout/blob/master/images/cutout_on_cifar10.jpg "Cutout applied to CIFAR-10")
 
 Bibtex:  
@@ -18,6 +18,10 @@ Bibtex:
 ```
 
 ## Results and Usage   
+### Dependencies  
+[PyTorch v0.2.0](http://pytorch.org/)  
+[tqdm](https://pypi.python.org/pypi/tqdm)
+
 ### ResNet18  
 Test error (%, flip/translation augmentation, mean/std normalization, mean of 5 runs) 
 
