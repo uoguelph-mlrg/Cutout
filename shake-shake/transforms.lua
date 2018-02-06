@@ -23,7 +23,7 @@ function M.CutOut(half_length)
 		local x1 = math.min(math.max(x - half_length, 1), w)
 		local x2 = math.min(math.max(x + half_length, 1), w)
 
-		input[{ {}, {y1, y2}, {x1, x2} }] = 1.
+		input[{ {}, {y1, y2}, {x1, x2} }] = 0.
 		return input
 	end
 end
