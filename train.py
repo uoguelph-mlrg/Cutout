@@ -42,7 +42,7 @@ parser.add_argument('--cutout', action='store_true', default=False,
                     help='apply cutout')
 parser.add_argument('--n_holes', type=int, default=1,
                     help='number of holes to cut out from image')
-parser.add_argument('--length', type=int, default=8,
+parser.add_argument('--length', type=int, default=16,
                     help='length of the holes')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables CUDA training')
@@ -170,18 +170,15 @@ def test(loader):
     correct = 0.
     total = 0.
     for images, labels in loader:
-        if args.dataset == 'svhn':
-            # SVHN labels are from 1 to 10, not 0 to 9, so subtract 1
-            labels = labels.type_as(torch.LongTensor()).view(-1) - 1
+        images = images.cuda()
+        labels = labels.cuda()
 
-        images = Variable(images, volatile=True).cuda()
-        labels = Variable(labels, volatile=True).cuda()
-
-        pred = cnn(images)
+        with torch.no_grad():
+            pred = cnn(images)
 
         pred = torch.max(pred.data, 1)[1]
         total += labels.size(0)
-        correct += (pred == labels.data).sum().item()
+        correct += (pred == labels).sum().item()
 
     val_acc = correct / total
     cnn.train()
@@ -198,12 +195,8 @@ for epoch in range(args.epochs):
     for i, (images, labels) in enumerate(progress_bar):
         progress_bar.set_description('Epoch ' + str(epoch))
 
-        if args.dataset == 'svhn':
-            # SVHN labels are from 1 to 10, not 0 to 9, so subtract 1
-            labels = labels.type_as(torch.LongTensor()).view(-1) - 1
-
-        images = Variable(images).cuda(async=True)
-        labels = Variable(labels).cuda(async=True)
+        images = images.cuda()
+        labels = labels.cuda()
 
         cnn.zero_grad()
         pred = cnn(images)
@@ -212,10 +205,10 @@ for epoch in range(args.epochs):
         xentropy_loss.backward()
         cnn_optimizer.step()
 
-        xentropy_loss_avg += xentropy_loss.data[0]
+        xentropy_loss_avg += xentropy_loss.item()
 
         # Calculate running average of accuracy
-        _, pred = torch.max(pred.data, 1)
+        pred = torch.max(pred.data, 1)[1]
         total += labels.size(0)
         correct += (pred == labels.data).sum().item()
         accuracy = correct / total
