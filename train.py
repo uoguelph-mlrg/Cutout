@@ -59,7 +59,7 @@ if args.cuda:
 
 test_id = args.dataset + '_' + args.model
 
-print args
+print(args)
 
 # Image Preprocessing
 if args.dataset == 'svhn':
@@ -181,7 +181,7 @@ def test(loader):
 
         pred = torch.max(pred.data, 1)[1]
         total += labels.size(0)
-        correct += (pred == labels.data).sum()
+        correct += (pred == labels.data).sum().item()
 
     val_acc = correct / total
     cnn.train()
@@ -217,7 +217,7 @@ for epoch in range(args.epochs):
         # Calculate running average of accuracy
         _, pred = torch.max(pred.data, 1)
         total += labels.size(0)
-        correct += (pred == labels.data).sum()
+        correct += (pred == labels.data).sum().item()
         accuracy = correct / total
 
         progress_bar.set_postfix(
