@@ -20,7 +20,7 @@ Bibtex:
 
 ## Results and Usage   
 ### Dependencies  
-[PyTorch v0.2.0](http://pytorch.org/)  
+[PyTorch v0.4.0](http://pytorch.org/)  
 [tqdm](https://pypi.python.org/pypi/tqdm)
 
 ### ResNet18  
