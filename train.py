@@ -220,7 +220,8 @@ for epoch in range(args.epochs):
     test_acc = test(test_loader)
     tqdm.write('test_acc: %.3f' % (test_acc))
 
-    scheduler.step(epoch)
+    scheduler.step(epoch)  # Use this line for PyTorch <1.4
+    # scheduler.step()     # Use this line for PyTorch >=1.4
 
     row = {'epoch': str(epoch), 'train_acc': str(accuracy), 'test_acc': str(test_acc)}
     csv_logger.writerow(row)
